@@ -85,7 +85,7 @@ bool NewSets(Elemtype arg[],int argNum, set &c){
 	return true;
 }
 
-int SerchFromSet(set A, Elemtype e){
+int SerchFromSets(set A, Elemtype e){
 	int location = LocateElem(A, e);
 	if (-1 == location){
 		return -1;
@@ -101,7 +101,7 @@ int DeleteFromSets(set A, Elemtype e){
 	while(-1 != location){
 		location = LocateElem(A, e);
 		ListDelete(A, location, tmp);		
-		std::cout << "被删除的元素:" <<tmp<<std::endl;
+		//std::cout << "被删除的元素:" <<tmp<<std::endl;
 	}
 	return location;
 }

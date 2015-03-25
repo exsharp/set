@@ -37,22 +37,22 @@ int main(){
 	PrintSets(C);
 	EmptySets(C);
 
-	cout << "新建：" << endl;
+	cout << "新建：{ 8, 2, 4, 7, 6 }" << endl;
 	Elemtype aa[5] = { 8, 2, 4, 7, 6 };
 	NewSets(aa,sizeof(aa)/sizeof(Elemtype), C);
 	PrintSets(C);
-	EmptySets(C);
 
-	//cout << "查找：'2'" << endl;
-	//int result = SerchFromSets(C, 2);
-	//cout << "结果:" << result << endl;
+	cout << "查找：2" << endl;
+	int result = SerchFromSets(C, 2);
+	cout << "结果:" << result << endl;
 
-	cout << "删除：'2'" << endl;
-	int result = DeleteFromSets(C, 2);
+	cout << "删除：2" << endl;
+	result = DeleteFromSets(C, 2);
 	PrintSets(C);
 	EmptySets(C);
 
 	cout << "清空：" << endl;
 	EmptySets(C);
+	cout << "集合C:";
 	PrintSets(C);
 }

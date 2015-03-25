@@ -22,6 +22,7 @@ bool DestroyList(List &L)
 	}
 	p = NULL;
 	tmp = NULL;
+	L = NULL;
 	return true;
 }
 
@@ -43,9 +44,7 @@ bool ClearList(List &L){
 
 bool ListEmpty(List L)
 {
-	LNode *p;
-	p = L->next;
-	if (!p)
+	if (!L->next)
 		return true;
 	else
 		return false;
@@ -53,15 +52,14 @@ bool ListEmpty(List L)
 
 int ListLength(List L)
 {
-	LNode *p;
-	p = L->next;
-	int j = 0;
-	while (p)
+	int total = L->data;
+	int j = -1;
+	while (L)
 	{
-		p = p->next;
+		L = L->next;
 		j++;
 	}
-	if (j != L->data){
+	if (j != total){
 		std::cout << "程序有问题\n";
 	}
 	return j;
@@ -70,36 +68,30 @@ int ListLength(List L)
 
 bool GetElem(List L, int i, type &e)
 {
-	LNode *p;
-	p = L->next;
-
-	int j = 1;
-	while (p&&j < i){
-		p = p->next;
+	int j = 0;
+	while (L&&j < i){
+		L = L->next;
 		j++;
 	}
-	if (!p || i <= 0){
+	if (!L || i <= 0){
 		return false;
 	}
 	else{
-		e = p->data;
+		e = L->data;
 		return true;
 	}
 }
 
 int LocateElem(List L, type e)
 {
-	LNode *p;
-	p = L->next;
-	
+	L = L->next;
 	int j = 1;
-
-	while (p&&p->data!=e)
+	while (L&&L->data != e)
 	{
-		p = p->next;
+		L = L->next;
 		++j;
 	}
-	if (!p){
+	if (!L){
 		return -1;
 	}
 	else{
@@ -111,7 +103,7 @@ bool ListInsert(List &L, int i, type e){
 	LNode *p;
 	p = L;
 
-	int j=1; //记录位置
+	int j = 1; //记录位置
 
 	while (p && j < i)
 	{
@@ -134,23 +126,22 @@ bool ListInsert(List &L, int i, type e){
 bool ListDelete(List &L, int i, type &e)
 {
 	LNode *p;
-	p = L->next;
+	p = L;
 	int j = 1;
 	while (p&&j < i){
 		p = p->next;
 		j++;
 	}
-	if (!p || i <= 0)
+	if (!p->next || i <= 0)
 		return false;
 	else {
 		LNode *temp = p->next;
 		p->next = temp->next;
 
 		e = temp->data;
+		delete temp;
 
 		L->data--;
-		L = NULL;
 		return true;
 	}
 }
-
