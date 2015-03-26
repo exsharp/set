@@ -1,27 +1,11 @@
 #include "set.h"
 #include <iostream>
 
-void PrintSets(set s){
-	for (int i = 1; i <= ListLength(s); i++){
-		Elemtype tmp;
-		GetElem(s, i, tmp);
-		std::cout << tmp << " ";
-	}
-	std::cout << std::endl;
-}
-
 bool InitSets(set &s){
-	if (InitList(s)){
-		return true;
-	}
-	else{
-		return false;
-	}
+	return InitList(s);
 }
 
 bool UnionSets(set A, set B, set &c){
-	if (!InitList(c))
-		return false;
 
 	int lenC = 0;
 	Elemtype tmp;
@@ -36,15 +20,14 @@ bool UnionSets(set A, set B, set &c){
 		GetElem(B, i, tmp);
 		if (-1==LocateElem(c, tmp)){
 			++lenC;
-			ListInsert(c, lenC, tmp);
+			if (!ListInsert(c, lenC, tmp))
+				return false;
 		}
 	}
 	return true;
 }
 
 bool IntersectionSets(set A, set B, set &c){ //交集
-	if (!InitList(c))
-		return false;
 
 	int lenC = 0;
 	Elemtype tmp;
@@ -59,8 +42,6 @@ bool IntersectionSets(set A, set B, set &c){ //交集
 }
 
 bool DifferenceSets(set A, set B, set &c){ //差集
-	if (!InitList(c))
-		return false;
 
 	int lenC = 0;
 	Elemtype tmp;
@@ -74,43 +55,34 @@ bool DifferenceSets(set A, set B, set &c){ //差集
 	return true;
 }
 
-bool NewSets(Elemtype arg[],int argNum, set &c){
-	if (!InitList(c))
-		return false;
-	
-	for (int i = 0; i < argNum; i++){
-		ListInsert(c, i+1, arg[i]);
-	}
+bool NewSets(Elemtype *arg,int argNum, set &c){
 
+	for (int i = 1; i <= argNum; i++){
+		ListInsert(c, i, arg[i-1]);
+	}
 	return true;
 }
 
+int SetsEleNum(set A){
+	return ListLength(A);
+}
+
 int SerchFromSets(set A, Elemtype e){
-	int location = LocateElem(A, e);
-	if (-1 == location){
-		return -1;
-	}
-	else{
-		return location;
-	}
+	return LocateElem(A, e);
 }
 
 int DeleteFromSets(set A, Elemtype e){
 	int location = 0;
+	int count = 0;
 	Elemtype tmp;
 	while(-1 != location){
 		location = LocateElem(A, e);
-		ListDelete(A, location, tmp);		
-		//std::cout << "被删除的元素:" <<tmp<<std::endl;
+		ListDelete(A, location, tmp);
+		count++;
 	}
-	return location;
+	return count;
 }
 
 bool EmptySets(set A){
-	if (ClearList(A)){
-		return true;
-	}
-	else {
-		return false;
-	}
+	return ClearList(A);
 }
