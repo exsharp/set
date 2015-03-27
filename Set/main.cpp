@@ -9,7 +9,7 @@ void PrintSets(set s){
 	int i = 1;
 	for (i = 1; i <= SetsEleNum(s)-1; i++){
 		GetElem(s, i, tmp);
-		std::cout << tmp << ",";
+		cout << tmp << ",";
 	}
 	if (0==SetsEleNum(s))
 		cout << ")";
@@ -19,7 +19,7 @@ void PrintSets(set s){
 	}
 
 
-	std::cout << std::endl;
+	cout << endl;
 }
 
 int main(){
@@ -34,20 +34,20 @@ int main(){
 	cin >> count;
 	cout << "输入集合A的元素:" << endl;
 	for (int i = 0; i < count; i++){
-		//cin >> num;
-		//ListInsert(A, i + 1, num);
-		ListInsert(A, i+1, i);
-		ListInsert(B, i+1, i+5);
+		cin >> num;
+		ListInsert(A, i + 1, num);
+		//ListInsert(A, i+1, i);
+		//ListInsert(B, i+1, i+5);
 	}
 
-	//cout << "初始化集合B:" << endl;
-	//cout << "输入集合B的元素个数:" << endl;
-	//cin >> count;
-	//cout << "输入集合B的元素:" << endl;
-	//for (int i = 0; i < count; i++){
-	//	cin >> num;
-	//	ListInsert(B, i + 1, num);
-	//}
+	cout << "初始化集合B:" << endl;
+	cout << "输入集合B的元素个数:" << endl;
+	cin >> count;
+	cout << "输入集合B的元素:" << endl;
+	for (int i = 0; i < count; i++){
+		cin >> num;
+		ListInsert(B, i + 1, num);
+	}
 
 	cout << "set A:";
 	PrintSets(A);
@@ -58,8 +58,6 @@ int main(){
 	cout << endl;
 
 	while (1){
-		cout << "1:向集合A插入元素" << endl;
-		cout << "2:向集合B插入元素" << endl;
 		cout << "3:求C=A∩B" << endl;
 		cout << "4:求C=A∪B" << endl;
 		cout << "5:求C=A-B" << endl;
@@ -70,12 +68,6 @@ int main(){
 		cin >> count;
 		switch (count)
 		{
-		case 1:
-			cout << "输入要插入的数字" << endl;
-			cin >> num;
-			break;
-		case 2:
-			break;
 		case 3:
 			system("cls");			
 			EmptySets(C);
