@@ -1,6 +1,8 @@
 #include "list.h"
 #include <iostream> //define NULL
 
+#ifdef LINK_LIST
+
 bool InitList(List &L)
 {
 	L = new LNode;
@@ -86,7 +88,7 @@ int LocateElem(List L, type e)
 {
 	L = L->next;
 	int j = 1;
-	while (L&&L->data != e)
+	while (L&&L->data!=e)
 	{
 		L = L->next;
 		++j;
@@ -103,7 +105,7 @@ bool ListInsert(List &L, int i, type e){
 	LNode *p;
 	p = L;
 
-	int j = 1; //记录位置
+	int j=1; //记录位置
 
 	while (p && j < i)
 	{
@@ -145,3 +147,5 @@ bool ListDelete(List &L, int i, type &e)
 		return true;
 	}
 }
+
+#endif

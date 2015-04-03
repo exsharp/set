@@ -82,7 +82,8 @@
     <ClInclude Include="set.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="list.cpp" />
+    <ClCompile Include="ArrayList.cpp" />
+    <ClCompile Include="LinkList.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="set.cpp" />
   </ItemGroup>
